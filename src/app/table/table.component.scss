@@ -1,0 +1,31 @@
+.table-component {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  .mat-elevation-z8 {
+    width: 80% !important;
+    height: 70%;
+
+    table {
+      width: 100%;
+
+      .restyled-row {
+        height: 48px;
+      }
+
+      .low {
+        background-color: #FFFFC9;
+      }
+
+      .medium {
+        background-color: #FFEBDE;
+      }
+
+      .high {
+        background-color: #FFD6D6;
+      }
+    }
+  }
+}

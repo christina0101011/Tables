@@ -9,7 +9,7 @@ const routes: Routes = [
   },
   {
     path: 'table',
-    loadChildren: './table/table.module#TableModule'
+    loadChildren: () => import('./table/table.module').then(m => m.TableModule)
   }
 ];
 

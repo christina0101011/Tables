@@ -1,0 +1,99 @@
+[
+  {
+  "itemName": "Strawberry",
+  "amountDetails": {
+    "amount": 1,
+    "units": "Kg."
+  },
+  "price": {
+    "pricePerUnit": 50,
+    "currency": "UAH"
+  },
+  "comments": "",
+  "priority": "Medium",
+  "done": false,
+  "metadata": {
+    "createdAt": 1576355485153
+  }
+},{
+  "itemName": "Coffee",
+  "amountDetails": {
+    "amount": 2,
+    "units": "Kg."
+  },
+  "price": {
+    "pricePerUnit": 250,
+    "currency": "UAH"
+  },
+  "comments": "",
+  "priority": "Medium",
+  "done": true,
+  "metadata": {
+    "createdAt": 1576355485153
+  }
+},{
+  "itemName": "Cucumbers",
+  "amountDetails": {
+    "amount": 0.5,
+    "units": "Kg."
+  },
+  "price": {
+    "pricePerUnit": 30,
+    "currency": "UAH"
+  },
+  "comments": "",
+  "priority": "Medium",
+  "done": false,
+  "metadata": {
+    "createdAt": 1576355485153
+  }
+},{
+  "itemName": "Water",
+  "amountDetails": {
+    "amount": 1,
+    "units": "Pc."
+  },
+  "price": {
+    "pricePerUnit": 30,
+    "currency": "UAH"
+  },
+  "comments": "A block of 0.5l bottles, sparkling",
+  "priority": "Low",
+  "done": false,
+  "metadata": {
+    "createdAt": 1576355485153
+  }
+},{
+  "itemName": "Chocolate",
+  "amountDetails": {
+    "amount": 1,
+    "units": "Pc."
+  },
+  "price": {
+    "pricePerUnit": 30,
+    "currency": "UAH"
+  },
+  "comments": "Black",
+  "priority": "Medium",
+  "done": false,
+  "metadata": {
+    "createdAt": 1576355485153
+  }
+},{
+  "itemName": "Shampoo",
+  "amountDetails": {
+    "amount": 3,
+    "units": "Pc."
+  },
+  "price": {
+    "pricePerUnit": 50,
+    "currency": "UAH"
+  },
+  "comments": "0.5l bottles",
+  "priority": "High",
+  "done": false,
+  "metadata": {
+    "createdAt": 1576355485153
+  }
+}
+]
