@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TableComponent } from './table.component';
 import { TableRoutingModule } from './tables-routes';
+import { DialogModule } from './add-item.dialogue';
 import {
 	MatTableModule,
 	MatSortModule,
@@ -11,7 +12,7 @@ import {
 	MatCheckboxModule,
 	MatPaginatorModule,
 	MatSlideToggleModule,
-	MatInputModule
+	MatInputModule,
 } from '@angular/material';
 
 @NgModule({
@@ -28,6 +29,8 @@ import {
 		MatPaginatorModule,
 		MatSlideToggleModule,
 		MatInputModule,
+		DialogModule
   ]
 })
+
 export class TableModule { }

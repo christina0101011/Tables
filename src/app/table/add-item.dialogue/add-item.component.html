@@ -1,0 +1,78 @@
+<div class="modal">
+
+  <div class="header">
+    <h4>Add new item to your shopping list</h4>
+  </div>
+
+  <form
+    [formGroup]="listForm"
+    class="add-item-form"
+    (ngSubmit)="onSubmit(listForm.value)">
+    <div>
+
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Add..."
+          formControlName="itemName">
+          <!-- <mat-error *ngIf="itemName.invalid && (itemName.dirty || itemName.touched) && itemName.errors.required">
+            This field is required.
+          </mat-error> -->
+      </mat-form-field>
+
+      <div formGroupName="amountDetails" class="form-group">
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Amount"
+            formControlName="amount">
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Units"
+            formControlName="units">
+        </mat-form-field>
+      </div>
+
+      <div formGroupName="price" class="form-group">
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Price per unit"
+            formControlName="pricePerUnit">
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Currency"
+            formControlName="currency">
+          </mat-form-field>
+      </div>
+
+      <mat-form-field>
+        <input
+        matInput
+        placeholder="Priority"
+        formControlName="priority">
+      </mat-form-field>
+
+    <div class="btns">
+      <mat-dialog-actions>
+        <button mat-button (click)="onNoClick()">
+          Cancel
+        </button>
+        <!-- [disabled]="!loginForm.valid" -->
+        <button
+          mat-button
+          type="submit"
+          [mat-dialog-close]="listForm"
+          
+          cdkFocusInitial>
+          Save
+        </button>
+      </mat-dialog-actions>
+      </div>
+    </div>
+  </form>
+</div>

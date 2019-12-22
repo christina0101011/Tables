@@ -1,6 +1,16 @@
 <div class="table-component">
+
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTY9TYm47accfLtwdfU_sF-ADLL-1nyPvhQG9HxLsLkg3DHUfnl&s"
+    (click)="openDialog()"  
+    class="add-btn"
+    alt="Loading...">
+
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+  </mat-form-field>
+
   <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource">
+    <table mat-table matSort [dataSource]="dataSource">
 
       <!-- Number in list Column -->
       <ng-container matColumnDef="index">
@@ -11,8 +21,8 @@
       </ng-container>
 
       <!-- Item Column -->
-      <ng-container matColumnDef="item">
-        <th mat-header-cell *matHeaderCellDef> Item </th>
+      <ng-container matColumnDef="itemName">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> Item </th>
         <td mat-cell *matCellDef="let element">
           {{element.itemName}}
         </td>
@@ -51,8 +61,8 @@
       </ng-container>
 
       <!-- Prioruty Column -->
-      <ng-container matColumnDef="prioruty">
-        <th mat-header-cell *matHeaderCellDef> Priority </th>
+      <ng-container matColumnDef="priority">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> Priority </th>
         <td mat-cell *matCellDef="let element">
           {{element.priority}}
         </td>
@@ -71,13 +81,13 @@
         </td>
       </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"
         class="restyled-row {{row.priority.toLowerCase()}}">
       </tr>
 
     </table>
 
-    <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> -->
+    <mat-paginator [pageSizeOptions]="[10, 20, 50]" class="mat-paginator-sticky" showFirstLastButtons></mat-paginator>
   </div>
 </div>

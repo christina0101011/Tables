@@ -1,5 +1,6 @@
 [
   {
+  "_id": "1",
   "itemName": "Strawberry",
   "amountDetails": {
     "amount": 1,
@@ -13,9 +14,10 @@
   "priority": "Medium",
   "done": false,
   "metadata": {
-    "createdAt": 1576355485153
+    "createdAt": 1576389087854
   }
 },{
+  "_id": "2",
   "itemName": "Coffee",
   "amountDetails": {
     "amount": 2,
@@ -32,6 +34,7 @@
     "createdAt": 1576355485153
   }
 },{
+  "_id": "3",
   "itemName": "Cucumbers",
   "amountDetails": {
     "amount": 0.5,
@@ -48,6 +51,7 @@
     "createdAt": 1576355485153
   }
 },{
+  "_id": "4",
   "itemName": "Water",
   "amountDetails": {
     "amount": 1,
@@ -64,6 +68,7 @@
     "createdAt": 1576355485153
   }
 },{
+  "_id": "5",
   "itemName": "Chocolate",
   "amountDetails": {
     "amount": 1,
@@ -80,6 +85,110 @@
     "createdAt": 1576355485153
   }
 },{
+  "_id": "6",
+  "itemName": "Shampoo",
+  "amountDetails": {
+    "amount": 3,
+    "units": "Pc."
+  },
+  "price": {
+    "pricePerUnit": 50,
+    "currency": "UAH"
+  },
+  "comments": "0.5l bottles",
+  "priority": "High",
+  "done": false,
+  "metadata": {
+    "createdAt": 1576355485153
+  }
+},
+{
+  "_id": "1",
+  "itemName": "Strawberry",
+  "amountDetails": {
+    "amount": 1,
+    "units": "Kg."
+  },
+  "price": {
+    "pricePerUnit": 50,
+    "currency": "UAH"
+  },
+  "comments": "",
+  "priority": "Medium",
+  "done": false,
+  "metadata": {
+    "createdAt": 1576389087854
+  }
+},{
+  "_id": "2",
+  "itemName": "Coffee",
+  "amountDetails": {
+    "amount": 2,
+    "units": "Kg."
+  },
+  "price": {
+    "pricePerUnit": 250,
+    "currency": "UAH"
+  },
+  "comments": "",
+  "priority": "Medium",
+  "done": true,
+  "metadata": {
+    "createdAt": 1576355485153
+  }
+},{
+  "_id": "3",
+  "itemName": "Cucumbers",
+  "amountDetails": {
+    "amount": 0.5,
+    "units": "Kg."
+  },
+  "price": {
+    "pricePerUnit": 30,
+    "currency": "UAH"
+  },
+  "comments": "",
+  "priority": "Medium",
+  "done": false,
+  "metadata": {
+    "createdAt": 1576355485153
+  }
+},{
+  "_id": "4",
+  "itemName": "Water",
+  "amountDetails": {
+    "amount": 1,
+    "units": "Pc."
+  },
+  "price": {
+    "pricePerUnit": 30,
+    "currency": "UAH"
+  },
+  "comments": "A block of 0.5l bottles, sparkling",
+  "priority": "Low",
+  "done": false,
+  "metadata": {
+    "createdAt": 1576355485153
+  }
+},{
+  "_id": "5",
+  "itemName": "Chocolate",
+  "amountDetails": {
+    "amount": 1,
+    "units": "Pc."
+  },
+  "price": {
+    "pricePerUnit": 30,
+    "currency": "UAH"
+  },
+  "comments": "Black",
+  "priority": "Medium",
+  "done": false,
+  "metadata": {
+    "createdAt": 1576355485153
+  }
+},{
+  "_id": "6",
   "itemName": "Shampoo",
   "amountDetails": {
     "amount": 3,

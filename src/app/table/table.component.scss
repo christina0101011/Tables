@@ -1,12 +1,32 @@
 .table-component {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   align-items: center;
   height: 100%;
+  position: relative;
+
+  .add-btn {
+    width: 130px;
+    position: absolute;
+    top: 70px;
+    z-index: 1000;
+    right: 110px;
+  }
+
+  .mat-form-field {
+    font-size: 14px;
+    width: 80%;
+    align-self: flex-end;
+  }
 
   .mat-elevation-z8 {
     width: 80% !important;
     height: 70%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    overflow-y: scroll;
 
     table {
       width: 100%;
@@ -27,5 +47,34 @@
         background-color: #FFD6D6;
       }
     }
+
+    .mat-paginator {
+      align-self: flex-end;
+    }
+
+    .mat-paginator-sticky {
+      bottom: 0px;
+      position: sticky;
+      z-index: 10;
+      width: 100%;
+    }
+  }
+
+  *::-webkit-scrollbar {
+    width: 10px;
+    background-color: gainsboro;
+  }
+
+  *::-webkit-scrollbar-track {
+    border-radius: 10px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: lighten(brown, 30%);
+    border-radius: 10px;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: brown;
   }
 }
