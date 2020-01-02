@@ -56,7 +56,7 @@ constructor(private _shoppingListService: ShoppingListService, public dialog: Ma
       width: '600px',
       data: { 
         amountDetails: {
-          amount: '',
+          amount: 1,
           units: '',
         },
         comments: '',

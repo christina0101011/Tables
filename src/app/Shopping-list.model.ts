@@ -1,7 +1,7 @@
 export interface ShoppingList {
   amountDetails?: {
     amount: number;
-    units: 'Kg.' | 'G.' | 'L.' | 'Pc.';
+    units: ['Kg.' | 'G.' | 'L.' | 'Pc.'];
   };
   comments?: string;
   done: boolean;

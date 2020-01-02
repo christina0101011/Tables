@@ -5,7 +5,7 @@ module.exports = ShoppingList = mongoose.model('ShoppingList', new Schema({
   itemName: String,
   amountDetails: {
     amount: Number,
-    units: 'Kg.' | 'G.' | 'L.' | 'Pc.',
+    units: ['Kg.' | 'G.' | 'L.' | 'Pc.'],
     required: false
   },
   price: {

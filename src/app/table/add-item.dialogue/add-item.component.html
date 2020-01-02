@@ -13,25 +13,45 @@
       <mat-form-field>
         <input
           matInput
+          required
           placeholder="Add..."
           formControlName="itemName">
-          <!-- <mat-error *ngIf="itemName.invalid && (itemName.dirty || itemName.touched) && itemName.errors.required">
+          <mat-error *ngIf="
+            listForm.controls.itemName &&
+            (listForm.controls.itemName.invalid &&
+            (listForm.controls.itemName.dirty ||
+            listForm.controls.itemName.touched) &&
+            listForm.controls.itemName.errors.required)">
             This field is required.
-          </mat-error> -->
+          </mat-error>
+          <mat-error *ngIf="
+            listForm.controls.itemName &&
+            listForm.controls['itemName'].hasError('minlength')">
+            Name is too short - minimum 3 chars.
+          </mat-error>
+          <mat-error *ngIf="
+            listForm.controls.itemName &&
+            listForm.controls['itemName'].hasError('maxlength')">
+            Name is too long - maximum 100 chars.
+          </mat-error>
       </mat-form-field>
 
       <div formGroupName="amountDetails" class="form-group">
         <mat-form-field>
           <input
             matInput
+            required
             placeholder="Amount"
             formControlName="amount">
         </mat-form-field>
+        
         <mat-form-field>
-          <input
-            matInput
-            placeholder="Units"
-            formControlName="units">
+          <mat-label>Units</mat-label>
+          <mat-select formControlName="units">
+            <mat-option *ngFor="let unit of units" [value]="unit">
+              {{ unit }}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
       </div>
 
@@ -50,24 +70,23 @@
           </mat-form-field>
       </div>
 
-      <mat-form-field>
-        <input
-        matInput
-        placeholder="Priority"
-        formControlName="priority">
-      </mat-form-field>
+      <p>Choose priority</p>
+      <mat-radio-group formControlName="priority">
+        <mat-radio-button value="Low">Low</mat-radio-button>
+        <mat-radio-button value="Medium">Medium</mat-radio-button>
+        <mat-radio-button value="High">High</mat-radio-button>
+      </mat-radio-group >
 
     <div class="btns">
       <mat-dialog-actions>
         <button mat-button (click)="onNoClick()">
           Cancel
         </button>
-        <!-- [disabled]="!loginForm.valid" -->
         <button
           mat-button
           type="submit"
           [mat-dialog-close]="listForm"
-          
+          [disabled]="!listForm.valid"
           cdkFocusInitial>
           Save
         </button>

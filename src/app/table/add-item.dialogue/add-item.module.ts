@@ -7,6 +7,7 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatSelectModule,
+  MatRadioModule,
 } from '@angular/material';
 
 import { AddItemDialogueComponent } from './add-item.component';
@@ -23,6 +24,7 @@ import { CommonModule } from '@angular/common';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    MatRadioModule,
     ReactiveFormsModule,
     CommonModule
   ],
