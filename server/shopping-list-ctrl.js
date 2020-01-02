@@ -12,8 +12,8 @@ module.exports.getShoppingList = (req, res, next) => {
 
 // Post new ShoppingList
 module.exports.postShoppingList = (req, res) => {
-  const shoppingList = new ShoppingList();
-  shoppingList.itemName = req.body.itemName;
+  // console.log('REQUEST', req.body)
+  const shoppingList = new ShoppingList(req.body);
   shoppingList.save((err) => {
     if (err) {
       console.log({ success: false, message: err });
@@ -32,24 +32,24 @@ module.exports.deleteShoppingList = (req, res) => {
       console.log(err);
       res.send(err);
     } else {
-      res.send({ data : "ShoppingList has been Deleted!" });
+      res.send({ data : "List item has been deleted!" });
     }
   });
 }
 
 //Update ShoppingList
 module.exports.updateShoppingList = (req, res, next) => {
-  ShoppingList.findByIdAndUpdate(req.params.id,
-    {
-      itemName = req.body.itemName
-  }, 
-    (err, list) => {
-      console.log(err);
-    if (err) {
-      res.send(err);
-      return next(err);
-    } else {
-      res.send({ data : "ShoppingList has been Updated!" });  
-    }
-  });
+  // ShoppingList.findByIdAndUpdate(req.params.id,
+  //   {
+  //     itemName = req.body.itemName
+  // }, 
+  //   (err, list) => {
+  //     console.log(err);
+  //   if (err) {
+  //     res.send(err);
+  //     return next(err);
+  //   } else {
+  //     res.send({ data : "ShoppingList has been Updated!" });  
+  //   }
+  // });
 }

@@ -4,18 +4,13 @@ const Schema = mongoose.Schema;
 const logger = require('morgan');
 const cors = require('cors');
 // const passport = require('passport');
-// const bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 const router = require('./api');
-// const cookieParser = require('cookie-parser');
 require('./database');
-// require('./config/passport');
-// require('./uploading-files.service');
 
 const port =  3000;
 console.log(port);
 const app = express();
-
-// nodemon  ./server/main.js ///////////////////////////////////
 
 app.use(logger('dev'));
 app.use((req, res, next) => {
@@ -35,10 +30,15 @@ app.use((req, res, next) => {
   // Pass to next layer of middleware
   next();
 });
-// app.use(bodyParser.json({
-//   limit: '50mb'
-// }));
-// app.use(cookieParser());
+
+app.use(
+  bodyParser.urlencoded({
+    extended: true
+  })
+)
+
+app.use(bodyParser.json())
+
 app.use(cors());
 // app.use(passport.initialize());
 app.use(router);

@@ -43,6 +43,9 @@ constructor(private _shoppingListService: ShoppingListService, public dialog: Ma
       this.dataSource.paginator = this.paginator;
       return this.dataSource.sort = this.sort;
     })
+
+    this._shoppingListService.getShoppingList()
+    .subscribe(res => console.log('getShoppingList', res))
   }
 
   onToggleChange($event, row) {}
@@ -75,7 +78,8 @@ constructor(private _shoppingListService: ShoppingListService, public dialog: Ma
 
     dialogRef.afterClosed().subscribe(result => {
       this.list = result;
-      console.log('The dialog was closed', this.list );
+      this._shoppingListService.postShoppingListItem(result.value)
+      .subscribe( (res: ShoppingList) => console.log('postShoppingListItem', res) );
     });
   }
   

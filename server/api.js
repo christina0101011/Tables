@@ -1,6 +1,4 @@
 const express = require('express');
-const Models = require('./shopping-list-model');
-const crypto = require('crypto');
 
 const ctrlShoppingList = require('./shopping-list-ctrl');
 

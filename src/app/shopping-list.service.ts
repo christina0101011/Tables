@@ -17,8 +17,16 @@ export class ShoppingListService {
     return this.http.get<ShoppingList[]>('./assets/shoppng-list.json')
   }
 
-  // getShoppingList(): Observable<any> {
-  //   return this.http.get('/api/blogs')
-  // }
+  getShoppingList(): Observable<ShoppingList[]> {
+    return this.http.get<ShoppingList[]>('/api/shoppinglist')
+  }
+
+  postShoppingListItem(list: ShoppingList) {
+    return this.http.post<ShoppingList>(url + '/api/record', list);
+  }
+
+  deleteShoppingList(_id) {
+    return this.http.delete(`${url}/api/record/${_id}`)
+  }
 
 }

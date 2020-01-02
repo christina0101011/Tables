@@ -51,7 +51,7 @@ export class AddItemDialogueComponent implements OnInit {
   }
 
   onSubmit(form) {
-      console.log(444, form);
+      // console.log(444, form);
   }
 
 }
