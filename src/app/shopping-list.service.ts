@@ -29,4 +29,8 @@ export class ShoppingListService {
     return this.http.delete(`${url}/api/record/${_id}`)
   }
 
+  editShoppingListItem(_id, list: ShoppingList) {
+    return this.http.put<ShoppingList>(`${url}/api/record/${_id}`, list)
+  }
+
 }

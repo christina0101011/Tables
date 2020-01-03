@@ -75,9 +75,17 @@
           <mat-slide-toggle
             color="primary"
             [checked]="element.done"
-            (change)="onToggleChange($event, element)"
-          >
+            (change)="onToggleChange($event, element)">
         </mat-slide-toggle>
+        </td>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <mat-icon svgIcon="edit" (click)="openDialog(element, element._id)"></mat-icon>
+          <mat-icon svgIcon="delete" (click)="deleteItem(element._id)"></mat-icon>
         </td>
       </ng-container>
 

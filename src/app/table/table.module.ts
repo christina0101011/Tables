@@ -13,6 +13,7 @@ import {
 	MatPaginatorModule,
 	MatSlideToggleModule,
 	MatInputModule,
+	MatIconModule,
 } from '@angular/material';
 
 @NgModule({
@@ -25,6 +26,7 @@ import {
 		MatOptionModule,
 		MatSelectModule,
 		MatRadioModule,
+		MatIconModule,
 		MatCheckboxModule,
 		MatPaginatorModule,
 		MatSlideToggleModule,

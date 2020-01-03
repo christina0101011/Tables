@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import { MatSort, MatTableDataSource, MatPaginator, MatDialog } from '@angular/material';
+import { MatSort, MatTableDataSource, MatPaginator, MatDialog, MatIconRegistry } from '@angular/material';
 import { ShoppingListService } from '../shopping-list.service';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ShoppingList } from '../Shopping-list.model';
 import { AddItemDialogueComponent } from './add-item.dialogue'
 
@@ -14,8 +15,20 @@ export class TableComponent implements OnInit {
 
   list: ShoppingList;
   name: string;
+  editMode: boolean;
 
-constructor(private _shoppingListService: ShoppingListService, public dialog: MatDialog) {}
+  constructor(
+    private _shoppingListService: ShoppingListService,
+    public dialog: MatDialog,
+    iconRegistry: MatIconRegistry,
+    sanitizer: DomSanitizer) {
+    iconRegistry.addSvgIcon(
+      'edit',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/edit.svg'));
+    iconRegistry.addSvgIcon(
+      'delete',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/garbage.svg'));
+  }
 
  public  displayedColumns: string[] = [
     'index',
@@ -25,7 +38,8 @@ constructor(private _shoppingListService: ShoppingListService, public dialog: Ma
     'comments',
     'added',
     'priority',
-    'done'
+    'done',
+    'actions'
   ];
   public dataSource;
 
@@ -33,7 +47,13 @@ constructor(private _shoppingListService: ShoppingListService, public dialog: Ma
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   ngOnInit() {
-    this.getInitialShoppingList()
+    // this.getInitialShoppingList()
+    this.getShoppingList()
+  }
+
+  deleteItem(_id) {
+    this._shoppingListService.deleteShoppingList(_id)
+    .subscribe(() => this.getShoppingList())
   }
   
   getInitialShoppingList() {
@@ -43,9 +63,6 @@ constructor(private _shoppingListService: ShoppingListService, public dialog: Ma
       this.dataSource.paginator = this.paginator;
       return this.dataSource.sort = this.sort;
     })
-
-    this._shoppingListService.getShoppingList()
-    .subscribe(res => console.log('getShoppingList', res))
   }
 
   onToggleChange($event, row) {}
@@ -53,11 +70,18 @@ constructor(private _shoppingListService: ShoppingListService, public dialog: Ma
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+
+  getShoppingList() {
+    this._shoppingListService.getShoppingList()
+    .subscribe((res:ShoppingList[]) => {
+      this.dataSource = res})
+  }
   
-  openDialog(): void {
+  openDialog(element, _id): void {
+    element ? this.editMode = true : this.editMode = false;
     let dialogRef = this.dialog.open(AddItemDialogueComponent, {
       width: '600px',
-      data: { 
+      data: element ? element : {
         amountDetails: {
           amount: 1,
           units: '',
@@ -77,9 +101,13 @@ constructor(private _shoppingListService: ShoppingListService, public dialog: Ma
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.list = result;
-      this._shoppingListService.postShoppingListItem(result.value)
-      .subscribe( (res: ShoppingList) => console.log('postShoppingListItem', res) );
+      if (this.editMode) {
+        this._shoppingListService.editShoppingListItem(_id, result.value)
+        .subscribe(() => this.getShoppingList())
+      } else {
+        this._shoppingListService.postShoppingListItem(result.value)
+        .subscribe(() => this.getShoppingList());
+      }
     });
   }
   

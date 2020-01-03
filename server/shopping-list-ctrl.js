@@ -20,7 +20,7 @@ module.exports.postShoppingList = (req, res) => {
       res.status(500).send({ "Error" : err.message });
       res.json({ success: false, message: err });
     } else {
-      res.json({ success: true, message: 'ShoppingList created' });
+      res.json({ success: true, message: 'New record has been created' });
     }
   });
 }
@@ -39,17 +39,16 @@ module.exports.deleteShoppingList = (req, res) => {
 
 //Update ShoppingList
 module.exports.updateShoppingList = (req, res, next) => {
-  // ShoppingList.findByIdAndUpdate(req.params.id,
-  //   {
-  //     itemName = req.body.itemName
-  // }, 
-  //   (err, list) => {
-  //     console.log(err);
-  //   if (err) {
-  //     res.send(err);
-  //     return next(err);
-  //   } else {
-  //     res.send({ data : "ShoppingList has been Updated!" });  
-  //   }
-  // });
+  ShoppingList.findByIdAndUpdate(
+    req.params.id,
+    req.body, 
+    (err, list) => {
+      console.log(err);
+    if (err) {
+      res.send(err);
+      return next(err);
+    } else {
+      res.send({ data : "Record has been Updated!" });  
+    }
+  });
 }

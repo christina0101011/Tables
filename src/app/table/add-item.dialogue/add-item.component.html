@@ -70,12 +70,23 @@
           </mat-form-field>
       </div>
 
-      <p>Choose priority</p>
-      <mat-radio-group formControlName="priority">
-        <mat-radio-button value="Low">Low</mat-radio-button>
-        <mat-radio-button value="Medium">Medium</mat-radio-button>
-        <mat-radio-button value="High">High</mat-radio-button>
-      </mat-radio-group >
+      <div class="form-group">
+        <div class="priority">
+          <p>Choose priority</p>
+          <mat-radio-group formControlName="priority">
+            <mat-radio-button value="Low">Low</mat-radio-button>
+            <mat-radio-button value="Medium">Medium</mat-radio-button>
+            <mat-radio-button value="High">High</mat-radio-button>
+          </mat-radio-group >
+        </div>
+        <mat-form-field>
+          <textarea
+            matInput
+            placeholder="Leave a comment"
+            formControlName="comments">
+          </textarea>
+        </mat-form-field>
+      </div>
 
     <div class="btns">
       <mat-dialog-actions>
