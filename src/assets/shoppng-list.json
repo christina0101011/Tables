@@ -1,6 +1,5 @@
 [
   {
-  "_id": "1",
   "itemName": "Strawberry",
   "amountDetails": {
     "amount": 1,
@@ -17,7 +16,6 @@
     "createdAt": 1576389087854
   }
 },{
-  "_id": "2",
   "itemName": "Coffee",
   "amountDetails": {
     "amount": 2,
@@ -34,7 +32,6 @@
     "createdAt": 1576355485153
   }
 },{
-  "_id": "3",
   "itemName": "Cucumbers",
   "amountDetails": {
     "amount": 0.5,
@@ -51,7 +48,6 @@
     "createdAt": 1576355485153
   }
 },{
-  "_id": "4",
   "itemName": "Water",
   "amountDetails": {
     "amount": 1,
@@ -68,7 +64,6 @@
     "createdAt": 1576355485153
   }
 },{
-  "_id": "5",
   "itemName": "Chocolate",
   "amountDetails": {
     "amount": 1,
@@ -85,7 +80,6 @@
     "createdAt": 1576355485153
   }
 },{
-  "_id": "6",
   "itemName": "Shampoo",
   "amountDetails": {
     "amount": 3,
@@ -103,14 +97,13 @@
   }
 },
 {
-  "_id": "1",
-  "itemName": "Strawberry",
+  "itemName": "Oranges",
   "amountDetails": {
-    "amount": 1,
+    "amount": 5,
     "units": "Kg."
   },
   "price": {
-    "pricePerUnit": 50,
+    "pricePerUnit": 30,
     "currency": "UAH"
   },
   "comments": "",
@@ -120,31 +113,29 @@
     "createdAt": 1576389087854
   }
 },{
-  "_id": "2",
-  "itemName": "Coffee",
+  "itemName": "Soap",
   "amountDetails": {
-    "amount": 2,
-    "units": "Kg."
+    "amount": 3,
+    "units": "Pc."
   },
   "price": {
-    "pricePerUnit": 250,
+    "pricePerUnit": 22,
     "currency": "UAH"
   },
-  "comments": "",
-  "priority": "Medium",
+  "comments": "Liquid",
+  "priority": "High",
   "done": true,
   "metadata": {
     "createdAt": 1576355485153
   }
 },{
-  "_id": "3",
-  "itemName": "Cucumbers",
+  "itemName": "Eggs",
   "amountDetails": {
-    "amount": 0.5,
-    "units": "Kg."
+    "amount": 30,
+    "units": "Pc."
   },
   "price": {
-    "pricePerUnit": 30,
+    "pricePerUnit": 2,
     "currency": "UAH"
   },
   "comments": "",
@@ -154,51 +145,48 @@
     "createdAt": 1576355485153
   }
 },{
-  "_id": "4",
-  "itemName": "Water",
+  "itemName": "Wine",
   "amountDetails": {
     "amount": 1,
     "units": "Pc."
   },
   "price": {
-    "pricePerUnit": 30,
+    "pricePerUnit": 110,
     "currency": "UAH"
   },
-  "comments": "A block of 0.5l bottles, sparkling",
+  "comments": "Red",
   "priority": "Low",
   "done": false,
   "metadata": {
     "createdAt": 1576355485153
   }
 },{
-  "_id": "5",
-  "itemName": "Chocolate",
+  "itemName": "Fish",
   "amountDetails": {
-    "amount": 1,
+    "amount": 3,
+    "units": "Kg."
+  },
+  "price": {
+    "pricePerUnit": 100,
+    "currency": "UAH"
+  },
+  "comments": "Frozen hake",
+  "priority": "High",
+  "done": false,
+  "metadata": {
+    "createdAt": 1576355485153
+  }
+},{
+  "itemName": "Tissues",
+  "amountDetails": {
+    "amount": 5,
     "units": "Pc."
   },
   "price": {
     "pricePerUnit": 30,
     "currency": "UAH"
   },
-  "comments": "Black",
-  "priority": "Medium",
-  "done": false,
-  "metadata": {
-    "createdAt": 1576355485153
-  }
-},{
-  "_id": "6",
-  "itemName": "Shampoo",
-  "amountDetails": {
-    "amount": 3,
-    "units": "Pc."
-  },
-  "price": {
-    "pricePerUnit": 50,
-    "currency": "UAH"
-  },
-  "comments": "0.5l bottles",
+  "comments": "Cubic",
   "priority": "High",
   "done": false,
   "metadata": {

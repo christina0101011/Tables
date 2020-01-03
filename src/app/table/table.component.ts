@@ -47,8 +47,10 @@ export class TableComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   ngOnInit() {
-    // this.getInitialShoppingList()
-    this.getShoppingList()
+    // run this function once to set initial data
+    // this.getInitialShoppingList();
+
+    this.getShoppingList();
   }
 
   deleteItem(_id) {
@@ -56,16 +58,22 @@ export class TableComponent implements OnInit {
     .subscribe(() => this.getShoppingList())
   }
   
+  // Fills database with initial data
   getInitialShoppingList() {
     this._shoppingListService.getInitialShoppingList()
     .subscribe((list: ShoppingList[]) => {
-      this.dataSource = new MatTableDataSource(list);
-      this.dataSource.paginator = this.paginator;
-      return this.dataSource.sort = this.sort;
+      list.forEach(element => {
+        this._shoppingListService.postShoppingListItem(element)
+        .subscribe(() => this.getShoppingList());
+      });
     })
   }
 
-  onToggleChange($event, row) {}
+  onToggleChange($event, row, _id) {
+    row.done = $event.checked;
+    this._shoppingListService.editShoppingListItem(_id, row)
+    .subscribe(() => this.getShoppingList())
+  }
   
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -74,7 +82,10 @@ export class TableComponent implements OnInit {
   getShoppingList() {
     this._shoppingListService.getShoppingList()
     .subscribe((res:ShoppingList[]) => {
-      this.dataSource = res})
+      this.dataSource = new MatTableDataSource(res)
+      this.dataSource.paginator = this.paginator;
+      return this.dataSource.sort = this.sort;
+    })
   }
   
   openDialog(element, _id): void {

@@ -4,7 +4,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Development server
 
-Run `npm run start` and `npm run node-server` for a dev server and db. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `npm run node-server` and `npm run start` for a dev server and db.
+Navigate to `http://localhost:4200/` after compilation.
+For your convenience initial table data easily creates by uncommenting `getInitialShoppingList` function in table.component.ts, line 51. Dont forget to hide it after it run once. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
