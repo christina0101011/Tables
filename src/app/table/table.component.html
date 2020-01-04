@@ -10,7 +10,11 @@
   </mat-form-field>
 
   <div class="mat-elevation-z8">
-    <table mat-table matSort [dataSource]="dataSource">
+    <table
+      mat-table
+      matSort
+      (matSortChange)="onQueriesChange()"
+      [dataSource]="dataSource">
 
       <!-- Number in list Column -->
       <ng-container matColumnDef="index">
@@ -96,6 +100,12 @@
 
     </table>
 
-    <mat-paginator [pageSizeOptions]="[10, 20, 50]" class="mat-paginator-sticky" showFirstLastButtons></mat-paginator>
+    <mat-paginator
+      [pageSizeOptions]="[10, 20, 50]"
+      [length]="recordsAmount"
+      class="mat-paginator-sticky" 
+      (page)="pageEvent = onQueriesChange($event)"
+      showFirstLastButtons>
+    </mat-paginator>
   </div>
 </div>

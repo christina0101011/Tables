@@ -2,13 +2,28 @@ const ShoppingList = require('./shopping-list-model');
 
 // GET ShoppingList listing
 module.exports.getShoppingList = (req, res, next) => {
-  ShoppingList.find({})
+  const pageNo = parseInt(req.query.pageno)
+  const sortby = req.query.sortby;
+  const orderby = req.query.orderby;
+  const limit = parseInt(req.query.pagesize);
+  const skip = pageNo * limit;
+  let shoppingList;
+
+  ShoppingList
+  .find({})
+  .sort({[sortby]: orderby})
+  .limit(limit)
+  .skip(skip)
   .exec()
   .then(list => {
-    res.send(list)
+    shoppingList = list
+    return ShoppingList.count({})
+  })
+  .then(count => {
+    res.send({list: shoppingList, recordsAmount: count})
   })
   .catch(err => res.send(err));
-};
+}
 
 // Post new ShoppingList
 module.exports.postShoppingList = (req, res) => {
@@ -37,7 +52,7 @@ module.exports.deleteShoppingList = (req, res) => {
   });
 }
 
-//Update ShoppingList
+// Update ShoppingList
 module.exports.updateShoppingList = (req, res, next) => {
   ShoppingList.findByIdAndUpdate(
     req.params.id,

@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort, MatTableDataSource, MatPaginator, MatDialog, MatIconRegistry } from '@angular/material';
 import { ShoppingListService } from '../shopping-list.service';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -12,10 +12,10 @@ import { AddItemDialogueComponent } from './add-item.dialogue'
 })
 
 export class TableComponent implements OnInit {
-
   list: ShoppingList;
   name: string;
   editMode: boolean;
+  recordsAmount: number;
 
   constructor(
     private _shoppingListService: ShoppingListService,
@@ -30,7 +30,7 @@ export class TableComponent implements OnInit {
       sanitizer.bypassSecurityTrustResourceUrl('assets/icons/garbage.svg'));
   }
 
- public  displayedColumns: string[] = [
+  public  displayedColumns: string[] = [
     'index',
     'itemName',
     'amount',
@@ -52,6 +52,15 @@ export class TableComponent implements OnInit {
 
     this.getShoppingList();
   }
+
+  onQueriesChange(event?): void {
+    this.getShoppingList(
+      this.sort.active,
+      this.sort.direction === 'asc' ? 1 : -1,
+      event = event.pageIndex,
+      event = event.pageSize
+    )
+	}
 
   deleteItem(_id) {
     this._shoppingListService.deleteShoppingList(_id)
@@ -79,10 +88,11 @@ export class TableComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  getShoppingList() {
-    this._shoppingListService.getShoppingList()
-    .subscribe((res:ShoppingList[]) => {
-      this.dataSource = new MatTableDataSource(res)
+  getShoppingList(sortBy?, orderBy?, pageNo?, pageSize?) {
+    this._shoppingListService.getShoppingList(sortBy, orderBy, pageNo, pageSize)
+    .subscribe(res => {
+      this.dataSource = new MatTableDataSource(res.list);
+      this.recordsAmount = res.recordsAmount;
       this.dataSource.paginator = this.paginator;
       return this.dataSource.sort = this.sort;
     })
