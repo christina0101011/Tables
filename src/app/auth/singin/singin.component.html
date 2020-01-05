@@ -1,0 +1,52 @@
+<button
+  mat-raised-button
+  class="redirect-btn"
+  routerLink="/auth/signup">
+  Go to sign UP
+</button>
+
+<div class="signin">
+  <h1 class="caption">Sign in if you are already a member</h1>
+  <mat-card>
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+    <form
+      (submit)="onSignIn(signinForm)"
+      #signinForm="ngForm"
+      *ngIf="!isLoading">
+      <mat-form-field>
+        <input
+          email
+          ngModel
+          matInput
+          required
+          name="email"
+          type="email"
+          #emailInput="ngModel"
+          placeholder="Your e-mail">
+          <mat-error *ngIf="emailInput.invalid">
+            Please enter a valid e-mail
+          </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          ngModel
+          matInput
+          required
+          name="password"
+          type="password"
+          #passwordInput="ngModel"
+          placeholder="Your password">
+          <mat-error *ngIf="passwordInput.invalid">
+            Please enter a valid password
+          </mat-error>
+      </mat-form-field>
+      <div class="footer">
+        <button
+          mat-raised-button color="accent" type="submit">
+          Sign IN
+        </button>
+      </div>
+    </form
+    >
+  </mat-card>
+</div>

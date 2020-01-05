@@ -10,7 +10,12 @@ const routes: Routes = [
   {
     path: 'table',
     loadChildren: () => import('./table/table.module').then(m => m.TableModule)
-  }
+  },
+  {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+  },
+  // { path: '**', component: Page404leavesComponent }
 ];
 
 @NgModule({

@@ -1,0 +1,46 @@
+.redirect-btn {
+  background-color: #a9ff00;
+  width: 120px;
+  position: absolute;
+  right: 100px;
+  top: 50px;
+}
+
+.signin {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  .caption {
+    width: 100%;
+    text-align: center;
+    align-self: flex-end;
+  }
+
+  mat-card {
+    width: 50%;
+    height: fit-content;
+
+    form {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      mat-form-field {
+        width: 70%;
+      }
+
+      .footer {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        
+        button {
+          width: 120px;
+        }
+      }
+    }
+  }
+}
