@@ -4,10 +4,6 @@ const ctrlShoppingList = require('./shopping-list-ctrl');
 
 const router = express.Router();
 
-router.get('/', function (req, res, next) {
-  res.send('respond with a resource');
-});
-
 // Get data for ShoppingList table
 router.get('/api/shoppinglist', ctrlShoppingList.getShoppingList);
 

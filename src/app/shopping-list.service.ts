@@ -18,9 +18,9 @@ export class ShoppingListService {
     return this.http.get<ShoppingList[]>('./assets/shoppng-list.json')
   }
 
-  getShoppingList(sortBy = 'createdAt', orderBy = 1, pageIndex: 0, pageSize: 10): Observable<ResponseModel> {
-    return this.http
-    .get<ResponseModel>(`/api/shoppinglist?sortby=${sortBy}&orderby=${orderBy}&pageno=${pageIndex}&pagesize=${pageSize}`)
+  getShoppingList(sortBy = 'metadata.createdAt', orderBy = -1, pageIndex, pageSize): Observable<ResponseModel> {
+    const query = `?sortby=${sortBy}&orderby=${orderBy}&pageno=${pageIndex ? pageIndex : 0}&pagesize=${pageSize ? pageSize : 10}`
+    return this.http.get<ResponseModel>(`/api/shoppinglist${query}`)
   }
 
   postShoppingListItem(list: ShoppingList) {

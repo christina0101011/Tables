@@ -4,6 +4,7 @@ import { ShoppingListService } from '../shopping-list.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ShoppingList } from '../Shopping-list.model';
 import { AddItemDialogueComponent } from './add-item.dialogue'
+import { ResponseModel } from '../response.model';
 
 @Component({
   selector: 'table-component',
@@ -12,10 +13,10 @@ import { AddItemDialogueComponent } from './add-item.dialogue'
 })
 
 export class TableComponent implements OnInit {
-  list: ShoppingList;
   name: string;
   editMode: boolean;
   recordsAmount: number;
+  dataSource;
 
   constructor(
     private _shoppingListService: ShoppingListService,
@@ -41,7 +42,6 @@ export class TableComponent implements OnInit {
     'done',
     'actions'
   ];
-  public dataSource;
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -57,10 +57,10 @@ export class TableComponent implements OnInit {
     this.getShoppingList(
       this.sort.active,
       this.sort.direction === 'asc' ? 1 : -1,
-      event = event.pageIndex,
-      event = event.pageSize
+      event ? event.pageIndex : 0,
+      event ? event.pageSize : 10
     )
-	}
+  }
 
   deleteItem(_id) {
     this._shoppingListService.deleteShoppingList(_id)
@@ -88,12 +88,12 @@ export class TableComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  // fetches latest dataset
   getShoppingList(sortBy?, orderBy?, pageNo?, pageSize?) {
     this._shoppingListService.getShoppingList(sortBy, orderBy, pageNo, pageSize)
-    .subscribe(res => {
+    .subscribe((res: ResponseModel) => {
       this.dataSource = new MatTableDataSource(res.list);
       this.recordsAmount = res.recordsAmount;
-      this.dataSource.paginator = this.paginator;
       return this.dataSource.sort = this.sort;
     })
   }

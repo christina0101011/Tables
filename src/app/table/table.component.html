@@ -20,7 +20,7 @@
       <ng-container matColumnDef="index">
         <th mat-header-cell *matHeaderCellDef> No. </th>
         <td mat-cell *matCellDef="let element; let j = index">
-          {{j+1}}
+          {{ j+1 }}
         </td>
       </ng-container>
 
@@ -28,7 +28,7 @@
       <ng-container matColumnDef="itemName">
         <th mat-header-cell mat-sort-header *matHeaderCellDef> Item </th>
         <td mat-cell *matCellDef="let element">
-          {{element.itemName}}
+          {{ element.itemName }}
         </td>
       </ng-container>
 
@@ -36,7 +36,7 @@
       <ng-container matColumnDef="amount">
         <th mat-header-cell *matHeaderCellDef> Amount </th>
         <td mat-cell *matCellDef="let element">
-          {{element.amountDetails.amount}} {{element.amountDetails.units}}
+          {{ element.amountDetails.amount }} {{ element.amountDetails.units }}
         </td>
       </ng-container>
 
@@ -44,7 +44,7 @@
       <ng-container matColumnDef="price">
         <th mat-header-cell *matHeaderCellDef> Price </th>
         <td mat-cell *matCellDef="let element">
-          {{element.price.pricePerUnit}} {{element.price.currency}}
+          {{ element.price.pricePerUnit }} {{ element.price.currency }}
         </td>
       </ng-container>
 
@@ -52,7 +52,7 @@
       <ng-container matColumnDef="comments">
         <th mat-header-cell *matHeaderCellDef> Comments </th>
         <td mat-cell *matCellDef="let element">
-          {{element.comments}}
+          {{ element.comments }}
         </td>
       </ng-container>
 
@@ -60,7 +60,7 @@
       <ng-container matColumnDef="added">
         <th mat-header-cell *matHeaderCellDef> Added </th>
         <td mat-cell *matCellDef="let element">
-          {{element.metadata.createdAt | date}}
+          {{ element.metadata.createdAt | date }}
         </td>
       </ng-container>
 
@@ -68,7 +68,7 @@
       <ng-container matColumnDef="priority">
         <th mat-header-cell mat-sort-header *matHeaderCellDef> Priority </th>
         <td mat-cell *matCellDef="let element">
-          {{element.priority}}
+          {{ element.priority }}
         </td>
       </ng-container>
 

@@ -2,10 +2,10 @@ const ShoppingList = require('./shopping-list-model');
 
 // GET ShoppingList listing
 module.exports.getShoppingList = (req, res, next) => {
-  const pageNo = parseInt(req.query.pageno)
+  const pageNo = +req.query.pageno;
   const sortby = req.query.sortby;
   const orderby = req.query.orderby;
-  const limit = parseInt(req.query.pagesize);
+  const limit = +req.query.pagesize;
   const skip = pageNo * limit;
   let shoppingList;
 
@@ -15,39 +15,36 @@ module.exports.getShoppingList = (req, res, next) => {
   .limit(limit)
   .skip(skip)
   .exec()
-  .then(list => {
-    shoppingList = list
-    return ShoppingList.count({})
-  })
-  .then(count => {
-    res.send({list: shoppingList, recordsAmount: count})
-  })
-  .catch(err => res.send(err));
+  .then(list => {shoppingList = list; return ShoppingList.count({}) })
+  .then(count => {res.send({list: shoppingList, recordsAmount: count}) })
+  .catch(err => {console.log(err); res.send(err); return next(err) });
 }
 
 // Post new ShoppingList
-module.exports.postShoppingList = (req, res) => {
-  // console.log('REQUEST', req.body)
+module.exports.postShoppingList = (req, res, next) => {
   const shoppingList = new ShoppingList(req.body);
   shoppingList.save((err) => {
     if (err) {
-      console.log({ success: false, message: err });
+      console.log(err);
       res.status(500).send({ "Error" : err.message });
-      res.json({ success: false, message: err });
+      return next(err);
     } else {
-      res.json({ success: true, message: 'New record has been created' });
+      console.log('New record has been created' );
+      res.send({'message': 'success'});
     }
   });
 }
 
 // Delete ShoppingList
-module.exports.deleteShoppingList = (req, res) => {
+module.exports.deleteShoppingList = (req, res, next) => {
   ShoppingList.findByIdAndRemove(req.params.id, err => {
     if(err){
       console.log(err);
       res.send(err);
+      return next(err);
     } else {
-      res.send({ data : "List item has been deleted!" });
+      console.log("List item has been deleted!");
+      res.send({'message': 'success'});
     }
   });
 }
@@ -63,7 +60,8 @@ module.exports.updateShoppingList = (req, res, next) => {
       res.send(err);
       return next(err);
     } else {
-      res.send({ data : "Record has been Updated!" });  
+      console.log('Record has been Updated!');
+      res.send({'message': 'success'});
     }
   });
 }
