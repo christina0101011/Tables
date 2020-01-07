@@ -43,4 +43,5 @@ process.on('SIGTERM', function () {
 });
 
 // BRING IN YOUR SCHEMAS & MODELS
-require('./shopping-list-model');
+require('./models/shopping-list.model');
+require('./models/user.model')

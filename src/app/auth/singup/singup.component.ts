@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-singup',
@@ -10,14 +11,20 @@ export class SingupComponent implements OnInit {
 
   isLoading = false;
 
-  constructor() { }
+  constructor(public _authServece: AuthService) { }
 
   ngOnInit() {
   }
 
   onSignUp(form: NgForm) {
-    console.log(555, form.value);
-    
+    if (form.valid) {
+      this._authServece.createUser(form.value.email, form.value.password)
+      .subscribe(res => {
+        console.log(555, res);
+      })
+    } else {
+      return
+    }
   }
 
 }

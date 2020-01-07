@@ -20,19 +20,19 @@ export class ShoppingListService {
 
   getShoppingList(sortBy = 'metadata.createdAt', orderBy = -1, pageIndex, pageSize): Observable<ResponseModel> {
     const query = `?sortby=${sortBy}&orderby=${orderBy}&pageno=${pageIndex ? pageIndex : 0}&pagesize=${pageSize ? pageSize : 10}`
-    return this.http.get<ResponseModel>(`/api/shoppinglist${query}`)
+    return this.http.get<ResponseModel>(`/api/list/shoppinglist${query}`)
   }
 
   postShoppingListItem(list: ShoppingList) {
-    return this.http.post<ShoppingList>(url + '/api/record', list);
+    return this.http.post<ShoppingList>(`${url}/api/list/record`, list);
   }
 
   deleteShoppingList(_id: string) {
-    return this.http.delete(`${url}/api/record/${_id}`)
+    return this.http.delete(`${url}/api/list/record/${_id}`)
   }
 
   editShoppingListItem(_id: string, list: ShoppingList) {
-    return this.http.put<ShoppingList>(`${url}/api/record/${_id}`, list)
+    return this.http.put<ShoppingList>(`${url}/api/list/record/${_id}`, list)
   }
 
 }

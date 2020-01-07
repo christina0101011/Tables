@@ -1,4 +1,4 @@
-const ShoppingList = require('./shopping-list-model');
+const ShoppingList = require('../models/shopping-list.model');
 
 // GET ShoppingList listing
 module.exports.getShoppingList = (req, res, next) => {

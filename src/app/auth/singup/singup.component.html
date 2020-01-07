@@ -10,8 +10,8 @@
   <mat-card>
     <mat-spinner *ngIf="isLoading"></mat-spinner>
     <form
-      (submit)="onSignUp(signinForm)"
-      #signinForm="ngForm"
+      (submit)="onSignUp(signupForm)"
+      #signupForm="ngForm"
       *ngIf="!isLoading">
       <mat-form-field>
         <input
@@ -32,6 +32,8 @@
           ngModel
           matInput
           required
+          minlength="5"
+          maxlength="15"
           name="password"
           type="password"
           #passwordInput="ngModel"

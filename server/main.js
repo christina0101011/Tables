@@ -5,7 +5,8 @@ const logger = require('morgan');
 const cors = require('cors');
 // const passport = require('passport');
 const bodyParser = require('body-parser');
-const router = require('./api');
+const listsRouter = require('./routes/list.routes');
+const authRoutes = require('./routes/auth.routes')
 require('./database');
 
 const port =  3000;
@@ -37,7 +38,8 @@ app.use(bodyParser.json())
 
 app.use(cors());
 // app.use(passport.initialize());
-app.use(router);
+app.use('/api/list', listsRouter);
+app.use('/api/auth', authRoutes);
 
 // [SH] Catch unauthorised errors
 // app.use((err, req, res, next) => {
