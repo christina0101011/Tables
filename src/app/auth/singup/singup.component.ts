@@ -11,16 +11,16 @@ export class SingupComponent implements OnInit {
 
   isLoading = false;
 
-  constructor(public _authServece: AuthService) { }
+  constructor(public _authService: AuthService) { }
 
   ngOnInit() {
   }
 
   onSignUp(form: NgForm) {
     if (form.valid) {
-      this._authServece.createUser(form.value.email, form.value.password)
+      this._authService.createUser(form.value.email, form.value.password)
       .subscribe(res => {
-        console.log(555, res);
+        // console.log(555, res);
       })
     } else {
       return

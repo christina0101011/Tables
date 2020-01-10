@@ -4,4 +4,6 @@ const ctrlUser = require('../controllers/auth.ctrl')
 
 router.post('/signup', ctrlUser.signup)
 
+router.post('/signin', ctrlUser.signin)
+
 module.exports = router;

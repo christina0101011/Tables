@@ -5,10 +5,13 @@
       Table
     </button>
   </div>
-  <button class="signin-btn btns" routerLink="/auth/signin">
+  <button class="signin-btn btns" *ngIf="!isLoggedIn" routerLink="/auth/signin">
     Sign IN
   </button>
-  <button class="signup-btn btns" routerLink="/auth/signup">
+  <button class="signup-btn btns" *ngIf="!isLoggedIn" routerLink="/auth/signup">
     Sing UP
+  </button>
+  <button class="signup-btn btns" *ngIf="isLoggedIn" routerLink="/profile">
+    My space
   </button>
 </div>
