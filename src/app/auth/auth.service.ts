@@ -1,39 +1,37 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { AuthData } from './auth.model';
-import { Subject, BehaviorSubject } from 'rxjs';
+import { AuthData } from '../interfaces/auth.model';
+import { BehaviorSubject } from 'rxjs';
+import { AuthResponse } from '../interfaces/auth-response.model';
 
 const url = 'http://localhost:3000';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  getToken = new Subject();
-  isLoggedIn = new BehaviorSubject(false);
-  currentlyLoggedIn: boolean;
+  currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  token = this.currentUser.token;
+
+  isLoggedIn = new BehaviorSubject(!!this.token);
 
   createUser(email: string, password: string) {
-    const authData: AuthData = {email: email, password: password}
-    return this.http.post(`${url}/api/auth/signup`, authData)
+    const authData: AuthData = {email: email, password: password};
+    return this.http.post(`${url}/api/auth/signup`, authData);
   }
 
   signIn(email: string, password: string) {
-    const authData: AuthData = {email: email, password: password}
-    return this.http.post<{status: number, token: string, message: string}>(`${url}/api/auth/signin`, authData)  
+    const authData: AuthData = {email: email, password: password};
+    return this.http.post<AuthResponse>(`${url}/api/auth/signin`, authData)  ;
   }
 
   signOut() {
-    this.getToken.next(null);
+    localStorage.setItem('currentUser', JSON.stringify({ token: null }));
     this.isLoggedIn.next(false);
   }
 
-  checkLogin() {
-    this.isLoggedIn.subscribe(res => {
-      return this.currentlyLoggedIn = res;
-    })
-  }
 }

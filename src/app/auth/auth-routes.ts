@@ -5,7 +5,7 @@ import { SinginComponent } from './singin/singin.component';
 import { SingupComponent } from './singup/singup.component';
 
 const routes: Routes = [
-  { path: '', 
+  { path: '',
     component: AuthComponent, children: [
       {
         path: 'signin', component: SinginComponent

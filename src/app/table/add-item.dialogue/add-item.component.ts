@@ -1,10 +1,10 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { FormBuilder, FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
-import { ShoppingList } from '../../Shopping-list.model'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ShoppingList } from '../../interfaces/shopping-list.model';
 
 @Component({
-  selector: 'add-item-dialogue',
+  selector: 'app-item-dialogue',
   templateUrl: 'add-item.component.html',
   styleUrls: ['add-item.component.scss'],
 })
@@ -25,10 +25,10 @@ export class AddItemDialogueComponent implements OnInit {
   }
 
   initListForm(): FormGroup {
-		return this._formBuilder.group({
-      amountDetails: this._formBuilder.group ({
+    return this._formBuilder.group({
+      amountDetails: this._formBuilder.group({
         amount: this.list.amountDetails.amount,
-        units: this.unitValue,
+        units: this.unitValue
       }),
       comments: this.list.comments,
       done: this.list.done,
@@ -37,7 +37,7 @@ export class AddItemDialogueComponent implements OnInit {
         Validators.minLength(3),
         Validators.maxLength(100)
       ])],
-      metadata: this._formBuilder.group({createdAt: this.list.metadata.createdAt}),
+      metadata: this._formBuilder.group({ createdAt: this.list.metadata.createdAt }),
       price: this._formBuilder.group({
         currency: this.list.price.currency,
         pricePerUnit: this.list.price.pricePerUnit
@@ -53,5 +53,4 @@ export class AddItemDialogueComponent implements OnInit {
   onSubmit(form) {
       // console.log(444, form);
   }
-
 }

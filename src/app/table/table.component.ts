@@ -2,12 +2,12 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort, MatTableDataSource, MatPaginator, MatDialog, MatIconRegistry } from '@angular/material';
 import { ShoppingListService } from '../shopping-list.service';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ShoppingList } from '../Shopping-list.model';
-import { AddItemDialogueComponent } from './add-item.dialogue'
-import { ResponseModel } from '../response.model';
+import { ShoppingList } from '../interfaces/shopping-list.model';
+import { AddItemDialogueComponent } from './add-item.dialogue';
+import { ShoppingListResponse } from '../interfaces/shopping-list-response.model';
 
 @Component({
-  selector: 'table-component',
+  selector: 'app-table-component',
   styleUrls: ['table.component.scss'],
   templateUrl: 'table.component.html',
 })
@@ -59,14 +59,14 @@ export class TableComponent implements OnInit {
       this.sort.direction === 'asc' ? 1 : -1,
       event ? event.pageIndex : 0,
       event ? event.pageSize : 10
-    )
+    );
   }
 
   deleteItem(_id) {
     this._shoppingListService.deleteShoppingList(_id)
-    .subscribe(() => this.getShoppingList())
+    .subscribe(() => this.getShoppingList());
   }
-  
+
   // Fills database with initial data
   getInitialShoppingList() {
     this._shoppingListService.getInitialShoppingList()
@@ -75,15 +75,15 @@ export class TableComponent implements OnInit {
         this._shoppingListService.postShoppingListItem(element)
         .subscribe(() => this.getShoppingList());
       });
-    })
+    });
   }
 
   onToggleChange($event, row, _id) {
     row.done = $event.checked;
     this._shoppingListService.editShoppingListItem(_id, row)
-    .subscribe(() => this.getShoppingList())
+    .subscribe(() => this.getShoppingList());
   }
-  
+
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
@@ -91,16 +91,16 @@ export class TableComponent implements OnInit {
   // fetches latest dataset
   getShoppingList(sortBy?, orderBy?, pageNo?, pageSize?) {
     this._shoppingListService.getShoppingList(sortBy, orderBy, pageNo, pageSize)
-    .subscribe((res: ResponseModel) => {
+    .subscribe((res: ShoppingListResponse) => {
       this.dataSource = new MatTableDataSource(res.list);
       this.recordsAmount = res.recordsAmount;
       return this.dataSource.sort = this.sort;
-    })
+    });
   }
-  
+
   openDialog(element, _id): void {
     element ? this.editMode = true : this.editMode = false;
-    let dialogRef = this.dialog.open(AddItemDialogueComponent, {
+    const dialogRef = this.dialog.open(AddItemDialogueComponent, {
       width: '600px',
       data: element ? element : {
         amountDetails: {
@@ -124,12 +124,12 @@ export class TableComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (this.editMode) {
         this._shoppingListService.editShoppingListItem(_id, result.value)
-        .subscribe(() => this.getShoppingList())
+        .subscribe(() => this.getShoppingList());
       } else {
         this._shoppingListService.postShoppingListItem(result.value)
         .subscribe(() => this.getShoppingList());
       }
     });
   }
-  
+
 }

@@ -14,8 +14,8 @@ export class WelcomePageComponent implements OnInit {
 
   ngOnInit() {
     this._authService.isLoggedIn.subscribe((res: boolean) => {
-      this.isLoggedIn = res
-    })
+      this.isLoggedIn = res;
+    });
   }
 
 }

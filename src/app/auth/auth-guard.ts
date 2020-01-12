@@ -5,17 +5,20 @@ import { AuthService } from './auth.service';
 @Injectable()
 
 export class AuthGuard implements CanActivate {
-
-constructor(private _authService: AuthService, private router: Router) {}
-
+  currentUser;
+  token;
+constructor(private _authService: AuthService, private router: Router) {
+  this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  this.token = this.currentUser.token;
+}
 canActivate(
-  route: import("@angular/router").ActivatedRouteSnapshot,
-  state: import("@angular/router").RouterStateSnapshot): boolean | import("@angular/router").UrlTree | import("rxjs").Observable<boolean | import("@angular/router").UrlTree> | Promise<boolean | import("@angular/router").UrlTree> {
-    let isLoggedIn = this._authService.currentlyLoggedIn;
-    if(!isLoggedIn) {
-      this.router.navigate(['/auth/signin'])
+  route: import('@angular/router').ActivatedRouteSnapshot,
+  state: import('@angular/router').RouterStateSnapshot): boolean | import('@angular/router').UrlTree | import('rxjs').Observable<boolean
+  | import('@angular/router').UrlTree> | Promise<boolean | import('@angular/router').UrlTree> {
+    if (!this.token) {
+      this.router.navigate(['/auth/signin']);
     } else {
-      return isLoggedIn
+      return !!this.token;
     }
   }
 }

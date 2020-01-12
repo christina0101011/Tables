@@ -12,7 +12,7 @@ module.exports.signup = (req, res, next) => {
     user.save()
     .then(response => {
       console.log('New user has been created' );
-      res.send({'status': 201, 'message': 'success'});
+      res.send({'status': 200, 'message': 'Successful sign up'});
     })
     .catch(err => {
       console.log(err);
